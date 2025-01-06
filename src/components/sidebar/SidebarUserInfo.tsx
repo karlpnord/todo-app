@@ -1,6 +1,6 @@
-const NavUserInfo = () => {
+const SidebarUserInfo = () => {
   return (
-    <div className='flex items-center gap-2'>
+    <div className='flex items-center gap-2 py-2'>
       <div className='bg-purple-500 rounded-full w-14 h-14 flex items-center justify-center'>
         <h2 className='text-xl'>KN</h2>
       </div>
@@ -12,4 +12,4 @@ const NavUserInfo = () => {
   );
 };
 
-export default NavUserInfo;
+export default SidebarUserInfo;
