@@ -6,9 +6,10 @@ import { Routes, Route } from 'react-router-dom';
 import MobileSidebar from './components/sidebar/MobileSidebar';
 import DesktopSidebar from './components/sidebar/DesktopSidebar';
 import MenuButton from './util/MenuButton';
-import AllTasks from './components/AllTasks';
-import ImportantTasks from './components/ImportantTasks';
-import MyDay from './components/MyDay';
+import AllTasks from './pages/AllTasks';
+import ImportantTasks from './pages/ImportantTasks';
+import MyDay from './pages/MyDay';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 const App = () => {
   const { width } = useDeviceSize();
@@ -23,7 +24,7 @@ const App = () => {
   }
 
   return (
-    <div className='bg-[#1e1e1e] h-screen'>
+    <div className='bg-[#1e1e1e]'>
       {width < 768 && (
         <div className='p-4'>
           <MenuButton toggleNav={toggleNav} />
@@ -34,8 +35,9 @@ const App = () => {
       </AnimatePresence>
       <div className='flex text-gray-100'>
         {width >= 768 && <DesktopSidebar /> }
-        <div className='p-4'>
+        <div className='p-4 w-full h-full md:mt-6 lg:p-6'>
           <Routes>
+            <Route index element={<Dashboard />} />
             <Route path='/myday' element={<MyDay />} />
             <Route path='/important' element={<ImportantTasks />} />
             <Route path='/all-tasks' element={<AllTasks />} />

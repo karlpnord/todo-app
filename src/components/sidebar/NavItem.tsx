@@ -1,7 +1,7 @@
 interface Props {
   icon: JSX.Element;
   title: string;
-  amount: number; 
+  amount?: number; 
 }
 
 const NavItem = ({ icon, title, amount }: Props) => {
