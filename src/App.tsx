@@ -9,7 +9,7 @@ import MenuButton from './util/MenuButton';
 import AllTasks from './pages/AllTasks';
 import ImportantTasks from './pages/ImportantTasks';
 import MyDay from './pages/MyDay';
-import Dashboard from './pages/Dashboard/Dashboard';
+import Dashboard from './pages/Dashboard';
 
 const App = () => {
   const { width } = useDeviceSize();
@@ -33,9 +33,9 @@ const App = () => {
       <AnimatePresence>
         {openNav && <MobileSidebar toggleNav={toggleNav} />}
       </AnimatePresence>
-      <div className='flex text-gray-100'>
+      <div className='flex md:grid md:grid-cols-[auto,1fr] text-gray-100'>
         {width >= 768 && <DesktopSidebar /> }
-        <div className='p-4 w-full h-full md:mt-6 lg:p-6'>
+        <div className='p-4 w-full h-full lg:p-6'>
           <Routes>
             <Route index element={<Dashboard />} />
             <Route path='/myday' element={<MyDay />} />

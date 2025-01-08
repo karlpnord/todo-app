@@ -7,7 +7,7 @@ import NavList from './NavList';
 
 const DesktopSidebar = () => {
   return (
-    <div className='flex flex-col gap-4 w-fit h-screen p-4 bg-zinc-800 text-gray-100'>
+    <div className='sticky top-0 flex flex-col gap-4 w-fit h-screen p-4 bg-zinc-800 text-gray-100'>
       <SidebarUserInfo />
       <form>
         <Input />
