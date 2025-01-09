@@ -1,15 +1,24 @@
-import { AiOutlineBarChart, AiOutlineEllipsis } from 'react-icons/ai';
-import { motion } from 'motion/react';
+import { AiOutlineBarChart } from 'react-icons/ai';
+import { motion, AnimatePresence } from 'motion/react';
+import { useState } from 'react';
 
 import Stats from '../components/dashboard/Stats';
 import TodaysDate from '../components/dashboard/TodaysDate';
 import TasksDueToday from '../components/dashboard/TasksDueToday';
 import Progression from '../components/dashboard/Progression';
 import DailyQuote from '../components/dashboard/DailyQuote';
+import TaskSettingsSidebar from '../components/sidebar/TaskSettingsSidebar';
 
 import DashboardSection from '../util/DashboardSection';
+import PageHeading from '../util/PageHeading';
 
 const Dashboard = () => {
+  const [openSettings, setOpenSettings] = useState<boolean>(false);
+  
+  const toggleSettings = () => {
+    setOpenSettings((prevState) => !prevState);
+  };
+
   return (
     <motion.div
       className='flex flex-col gap-12'
@@ -17,14 +26,10 @@ const Dashboard = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <div className='flex items-center w-full gap-2'>
-        <AiOutlineBarChart size={28} className='text-green-300' />
-        <h1 className='text-2xl font-bold'>Dashboard</h1>
-        <AiOutlineEllipsis size={28} className='w-fit ml-auto text-gray-100 p-[6px] rounded-md border border-zinc-700 hover:bg-zinc-700 transition active:scale-90' />
-      </div>
+      <PageHeading icon={<AiOutlineBarChart size={28} className='text-green-300' />} title='Dashboard' />
       <DashboardSection grid={true}>
         <TodaysDate />
-        <TasksDueToday />
+        <TasksDueToday toggleSettings={toggleSettings} />
       </DashboardSection>
       <DashboardSection grid={true}>
         <Progression />
@@ -33,7 +38,9 @@ const Dashboard = () => {
       <DashboardSection>
         <Stats />
       </DashboardSection>
-      
+      <AnimatePresence>
+        {openSettings && <TaskSettingsSidebar toggleSettings={toggleSettings} />}
+      </AnimatePresence>
     </motion.div>
   );
 };

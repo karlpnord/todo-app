@@ -1,4 +1,4 @@
-import { AiOutlineHome, AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlineStar, AiOutlinePlus } from 'react-icons/ai';
 import { motion, AnimatePresence } from 'motion/react';
 import { useState } from 'react';
 
@@ -7,13 +7,13 @@ import TaskSettingsSidebar from '../components/sidebar/TaskSettingsSidebar';
 import Task from '../components/ui/Task';
 import PageHeading from '../util/PageHeading';
 
-const AllTasks = () => {
+const Important = () => {
   const [openSettings, setOpenSettings] = useState<boolean>(false);
   
   const toggleSettings = () => {
     setOpenSettings((prevState) => !prevState);
   };
-    
+  
   return (
     <motion.div
       className='flex flex-col gap-12 h-full'
@@ -21,7 +21,7 @@ const AllTasks = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <PageHeading icon={<AiOutlineHome size={28} className='text-blue-400' />} title='All Tasks' />
+      <PageHeading icon={<AiOutlineStar size={28} className='text-red-400' />} title='Important' />
       <ul className='flex-1'>
         <Task title='Task 1' toggleSettings={toggleSettings} />
         <Task title='Task 2' toggleSettings={toggleSettings} />
@@ -40,4 +40,4 @@ const AllTasks = () => {
   );
 };
 
-export default AllTasks;
+export default Important;
