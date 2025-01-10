@@ -1,38 +1,32 @@
-import { AiOutlineHome, AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlineHome } from 'react-icons/ai';
 import { motion, AnimatePresence } from 'motion/react';
 import { useState } from 'react';
+import useTaskStore from '../store/taskStore';
 
 import TaskSettingsSidebar from '../components/sidebar/TaskSettingsSidebar';
-
-import Task from '../components/ui/Task';
+import TaskList from '../components/ui/TaskList';
+import AddTaskForm from '../components/form/AddTaskForm';
 import PageHeading from '../util/PageHeading';
 
 const AllTasks = () => {
+  const { allTasks } = useTaskStore();
+  
   const [openSettings, setOpenSettings] = useState<boolean>(false);
   
   const toggleSettings = () => {
     setOpenSettings((prevState) => !prevState);
   };
-    
+
   return (
     <motion.div
-      className='flex flex-col gap-12 h-full'
+      className='flex flex-col gap-12 h-full max-h-[calc(100vh-3rem)]'
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
       <PageHeading icon={<AiOutlineHome size={28} className='text-blue-400' />} title='All Tasks' />
-      <ul className='flex-1'>
-        <Task title='Task 1' toggleSettings={toggleSettings} />
-        <Task title='Task 2' toggleSettings={toggleSettings} />
-        <Task title='Task 3' toggleSettings={toggleSettings} />
-        <Task title='Task 4' toggleSettings={toggleSettings} />
-        <Task title='Task 5' toggleSettings={toggleSettings} />
-      </ul>
-      <form className='flex items-center gap-4 w-full p-4 rounded-md cursor-pointer hover:bg-zinc-700/50 transition'>
-        <AiOutlinePlus size={20} />
-        <span>Add Task</span>
-      </form>
+      <TaskList taskList={allTasks} toggleSettings={toggleSettings} emptyText='No tasks added yet' />
+      <AddTaskForm />
       <AnimatePresence>
         {openSettings && <TaskSettingsSidebar toggleSettings={toggleSettings} />}
       </AnimatePresence>

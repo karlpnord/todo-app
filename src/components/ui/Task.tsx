@@ -3,33 +3,30 @@ import { useState } from 'react';
 
 interface Props {
   title: string;
+  isImportant: boolean;
   toggleSettings?: () => void;
 }
 
-const Task = ({ title, toggleSettings }: Props) => {
+const Task = ({ title, isImportant, toggleSettings }: Props) => {
   const [taskChecked, setTaskChecked] = useState<boolean>(false);
-  const [taskImportant, setTaskImportant] = useState<boolean>(false);
   
-  const toggleChecked = () => {
+  const toggleChecked = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setTaskChecked((prevState) => !prevState);
-  };
-
-  const toggleImportant = () => {
-    setTaskImportant((prevState) => !prevState);
   };
   
   return (
-    <li className='flex items-center gap-2 p-4 bg-zinc-800 mb-2 rounded-md'>
+    <li onClick={toggleSettings} className='flex items-center gap-2 p-4 bg-zinc-800 mb-2 rounded-md hover:bg-zinc-700 transition'>
       <div
-        className={`${taskChecked ? 'bg-gray-300' : ''} border-2 border-gray-300 rounded-full w-4 h-4`}
+        className={`${taskChecked ? 'bg-gray-300' : ''} border-2 border-gray-300 rounded-full w-4 h-4 cursor-pointer`}
         onClick={toggleChecked}
       >
       </div>
-      <div onClick={toggleSettings} className='cursor-pointer'>
+      <span>
         {title}
-      </div>
-      <div onClick={toggleImportant} className='ml-auto text-gray-300 hover:text-blue-400 transition'>
-        {taskImportant ? <AiFillStar size={20} /> : <AiOutlineStar size={20} />}
+      </span>
+      <div className='ml-auto text-gray-300 hover:text-blue-400 transition'>
+        {isImportant ? <AiFillStar size={20} /> : <AiOutlineStar size={20} />}
       </div>
     </li>
   );
