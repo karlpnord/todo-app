@@ -31,7 +31,7 @@ const TaskList = ({ taskList, toggleSettings, emptyText }: Props) => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
-            <Task title={task.title} isImportant={task.isImportant} toggleSettings={toggleSettings} />
+            <Task task={task} toggleSettings={toggleSettings} />
           </motion.div>
         ))
       )}
