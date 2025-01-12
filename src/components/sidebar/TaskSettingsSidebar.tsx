@@ -1,6 +1,14 @@
-import { motion } from 'motion/react';
-import { AiOutlineDelete, AiOutlineStar, AiOutlineCheckCircle, AiOutlineEdit } from 'react-icons/ai';
+import { AnimatePresence, motion } from 'motion/react';
+import { AiOutlineCalendar, AiOutlineClose } from 'react-icons/ai';
+import { useFormatDate } from '../../hooks/useFormatDate';
+import { useState } from 'react';
 import useTaskStore from '../../store/taskStore';
+
+import DeleteTaskModal from '../ui/DeleteTaskModal';
+import TaskSettingsImportant from './task-settings/TaskSettingsImportant';
+import TaskSettingsCompleted from './task-settings/TaskSettingsCompleted';
+import TaskSettingsDelete from './task-settings/TaskSettingsDelete';
+import TaskSettingsUpdate from './task-settings/TaskSettingsUpdate';
 
 interface Props {
   toggleSettings: () => void;
@@ -8,8 +16,15 @@ interface Props {
 
 const TaskSettingsSidebar = ({ toggleSettings }: Props) => {
   const { activeTask } = useTaskStore();
-  const date = activeTask?.createdAt.toLocaleDateString();
   
+  const [deleteModalOpen, setDeleteModalOpen] = useState<boolean>(false);
+  
+  const date = useFormatDate(activeTask?.createdAt);
+
+  const toggleDeleteModal = () => {
+    setDeleteModalOpen((prev) => !prev);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -27,29 +42,26 @@ const TaskSettingsSidebar = ({ toggleSettings }: Props) => {
         onClick={(e) => e.stopPropagation()}
         className='fixed right-0 top-0 flex flex-col gap-2 w-64 h-screen p-4 bg-zinc-800 text-gray-100 z-50'
       >
-        <h2 className='text-xl mb-2'>Settings</h2>
+        <div className='flex justify-between items-center border-b border-zinc-600 pb-3 mb-2'>
+          <h2 className='text-2xl font-bold'>Task Settings</h2>
+          <button onClick={toggleSettings} className='w-fit text-gray-100 p-1 rounded-md border border-zinc-700 hover:bg-zinc-700 transition active:scale-90'>
+            <AiOutlineClose className='text-gray-50' size={20} />
+          </button>
+        </div>
         <ul className='flex flex-col gap-2'>
-          <li className='flex items-center gap-2 rounded-md p-2 hover:bg-[#3B3B3E] transition'>
-            <AiOutlineEdit className='text-blue-400' size={20} />
-            Update Title
-          </li>
-          <li className='flex items-center gap-2 rounded-md p-2 hover:bg-[#3B3B3E] transition'>
-            <AiOutlineCheckCircle className='text-green-400' size={20} />
-            <span>Mark Completed</span>
-          </li>
-          <li className='flex items-center gap-2 rounded-md p-2 hover:bg-[#3B3B3E] transition'>
-            <AiOutlineStar className='text-yellow-400' size={20} />
-            <span>Mark Important</span>
-          </li>
-          <li className='flex items-center gap-2 rounded-md p-2 hover:bg-[#3B3B3E] transition'>
-            <AiOutlineDelete className='text-red-400' size={20} />
-            <span>Delete</span>
-          </li>
+          <TaskSettingsUpdate />
+          <TaskSettingsCompleted />
+          <TaskSettingsImportant />
+          <TaskSettingsDelete toggleDeleteModal={toggleDeleteModal} />
         </ul>
-        <div className='p-2 mt-auto'>
+        <div className='px-2 pb-2 py-4 mt-auto flex items-center gap-1 border-t border-zinc-600'>
+          <AiOutlineCalendar size={18} className='text-blue-400' />
           <h3>Created: {date}</h3>
         </div>
       </motion.div>
+      <AnimatePresence>
+        {deleteModalOpen && <DeleteTaskModal toggleModal={toggleDeleteModal} toggleSettings={toggleSettings} taskId={activeTask?.id} /> }
+      </AnimatePresence>
     </motion.div>
   );
 };

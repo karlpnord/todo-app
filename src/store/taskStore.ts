@@ -12,6 +12,7 @@ interface TaskStore {
   clearActiveTask: () => void;
   toggleTaskImportant: (taskId: string) => void;
   toggleTaskComplete: (taskId: string) => void;
+  deleteTask: (taskId: string) => void;
 }
 
 const useTaskStore = create<TaskStore>((set) => ({
@@ -58,10 +59,16 @@ const useTaskStore = create<TaskStore>((set) => ({
       return task;
     });
 
+    const updatedActiveTask =
+      state.activeTask?.id === taskId
+        ? { ...state.activeTask, isImportant: updatedTask.isImportant }
+        : state.activeTask;
+
     return {
       allTasks: updatedAllTasks,
       importantTasks: updatedImportantTasks,
       myDayTasks: updatedMyDayTasks,
+      activeTask: updatedActiveTask,
     };
   }),
 
@@ -85,10 +92,32 @@ const useTaskStore = create<TaskStore>((set) => ({
         task.id === taskId ? { ...task, isCompleted: updatedTask.isCompleted } : task
       );
 
+      const updatedActiveTask =
+      state.activeTask?.id === taskId
+        ? { ...state.activeTask, isCompleted: updatedTask.isCompleted }
+        : state.activeTask;
+
       return {
         allTasks: updatedAllTasks,
         importantTasks: updatedImportantTasks,
         myDayTasks: updatedMyDayTasks,
+        activeTask: updatedActiveTask,
+      };
+    }),
+
+  deleteTask: (taskId) =>
+    set((state) => {
+      const updatedAllTasks = state.allTasks.filter((task) => task.id !== taskId);
+      const updatedImportantTasks = state.importantTasks.filter((task) => task.id !== taskId);
+      const updatedMyDayTasks = state.myDayTasks.filter((task) => task.id !== taskId);
+    
+      const updatedActiveTask = state.activeTask?.id === taskId ? null : state.activeTask;
+    
+      return {
+        allTasks: updatedAllTasks,
+        importantTasks: updatedImportantTasks,
+        myDayTasks: updatedMyDayTasks,
+        activeTask: updatedActiveTask,
       };
     }),
 

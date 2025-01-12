@@ -46,6 +46,7 @@ const Task = ({ task, toggleSettings }: Props) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
+          className='cursor-pointer'
         >
           {task.isCompleted ? (
             <FaRegCircleCheck size={18} className='text-green-400' />
@@ -55,9 +56,10 @@ const Task = ({ task, toggleSettings }: Props) => {
         </motion.div>
       </div>
       <motion.span
-        className={`${task.isCompleted ? 'line-through text-gray-400' : 'text-gray-100'}`}
+        className={`${task.isCompleted ? 'line-through text-gray-400' : 'text-gray-100'} cursor-pointer`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
+        onClick={toggleComplete}
       >
         {task.title}
       </motion.span>
