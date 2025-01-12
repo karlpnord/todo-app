@@ -13,6 +13,7 @@ interface TaskStore {
   toggleTaskImportant: (taskId: string) => void;
   toggleTaskComplete: (taskId: string) => void;
   deleteTask: (taskId: string) => void;
+  updateTaskTitle: (taskId: string, newTitle: string) => void;
 }
 
 const useTaskStore = create<TaskStore>((set) => ({
@@ -112,6 +113,33 @@ const useTaskStore = create<TaskStore>((set) => ({
       const updatedMyDayTasks = state.myDayTasks.filter((task) => task.id !== taskId);
     
       const updatedActiveTask = state.activeTask?.id === taskId ? null : state.activeTask;
+    
+      return {
+        allTasks: updatedAllTasks,
+        importantTasks: updatedImportantTasks,
+        myDayTasks: updatedMyDayTasks,
+        activeTask: updatedActiveTask,
+      };
+    }),
+
+  updateTaskTitle: (taskId, newTitle) =>
+    set((state) => {
+      const updatedAllTasks = state.allTasks.map((task) =>
+        task.id === taskId ? { ...task, title: newTitle } : task
+      );
+    
+      const updatedImportantTasks = state.importantTasks.map((task) =>
+        task.id === taskId ? { ...task, title: newTitle } : task
+      );
+    
+      const updatedMyDayTasks = state.myDayTasks.map((task) =>
+        task.id === taskId ? { ...task, title: newTitle } : task
+      );
+    
+      const updatedActiveTask =
+          state.activeTask?.id === taskId
+            ? { ...state.activeTask, title: newTitle }
+            : state.activeTask;
     
       return {
         allTasks: updatedAllTasks,
