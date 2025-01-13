@@ -14,7 +14,7 @@ const TaskList = ({ taskList, toggleSettings, emptyText }: Props) => {
   return (
     <ul className='flex-1 overflow-y-auto scrollbar-rounded scrollbar-thumb-zinc-900 scrollbar-thin'>
       {taskList.length === 0 ? (
-        <motion.div
+        <motion.li
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
@@ -22,17 +22,10 @@ const TaskList = ({ taskList, toggleSettings, emptyText }: Props) => {
         >
           <AiOutlineCarryOut size={36} className='text-blue-400' />
           <h2>{emptyText}</h2>
-        </motion.div>
+        </motion.li>
       ) : (
         taskList.map(task => (
-          <motion.div
-            key={task.id}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
-            <Task task={task} toggleSettings={toggleSettings} />
-          </motion.div>
+          <Task key={task.id} task={task} toggleSettings={toggleSettings} />
         ))
       )}
     </ul>

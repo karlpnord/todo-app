@@ -16,7 +16,11 @@ const AddListForm = () => {
   return (
     <form onSubmit={handleAddList} className='flex relative mt-auto items-center group'>
       <div className='border-t border-zinc-600 pb-2' />
-      <button className='absolute left-3 text-gray-100 cursor-pointer bg-zinc-700'>
+      <button
+        className='absolute left-3 text-gray-100 cursor-pointer bg-zinc-700'
+        type='submit'
+        aria-label='Add list'
+      >
         <AiOutlinePlus size={20} />
       </button>
       <input
