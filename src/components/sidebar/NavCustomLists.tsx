@@ -10,10 +10,10 @@ const NavCustomLists = () => {
   return (
     <ul>
       {customLists.length === 0 ? (
-        <p className='pl-2'>No lists added</p>
+        <li className='pl-2'>No lists added</li>
       ): (
         customLists.map((list) => (
-          <motion.div key={list.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <motion.li key={list.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <NavLink
               to={`/custom/${list.id}`}
               className={({ isActive }) => 
@@ -22,7 +22,7 @@ const NavCustomLists = () => {
             >
               <NavItem icon={<AiOutlineMenu size={20} className='text-blue-400' />} title={list.listName} amount={list.tasks.length} />
             </NavLink>
-          </motion.div>
+          </motion.li>
         ))
       )}
     </ul>

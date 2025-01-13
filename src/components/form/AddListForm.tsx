@@ -17,11 +17,11 @@ const AddListForm = () => {
     <form onSubmit={handleAddList} className='flex relative mt-auto items-center group'>
       <div className='border-t border-zinc-600 pb-2' />
       <button
-        className='absolute left-3 text-gray-100 cursor-pointer bg-zinc-700'
+        className='absolute left-2 text-gray-300 cursor-pointer bg-zinc-700'
         type='submit'
         aria-label='Add list'
       >
-        <AiOutlinePlus size={20} />
+        <AiOutlinePlus size={24} />
       </button>
       <input
         onChange={(e) => setListQuery(e.target.value)}
