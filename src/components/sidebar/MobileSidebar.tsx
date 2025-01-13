@@ -1,31 +1,17 @@
 import { motion } from 'motion/react';
-import { AiOutlineMenu, AiOutlinePlus, AiOutlineEllipsis } from 'react-icons/ai';
-import { FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { AiOutlineEllipsis } from 'react-icons/ai';
 
 import MenuButton from '../../util/MenuButton';
-import NavItem from './NavItem';
-import Input from '../form/Input';
 import SidebarUserInfo from './SidebarUserInfo';
 import NavList from './NavList';
+import NavCustomLists from './NavCustomLists';
+import AddListForm from '../form/AddListForm';
 
 interface Props {
   toggleNav: () => void;
 }
 
 const MobileSidebar = ({ toggleNav }: Props) => {
-  const navigate = useNavigate();
-
-  const navigateHandler = () => {
-    navigate('/all-tasks');
-  };
-
-  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    toggleNav();
-    navigateHandler();
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -48,22 +34,13 @@ const MobileSidebar = ({ toggleNav }: Props) => {
           <AiOutlineEllipsis size={20} />
         </div>
         <SidebarUserInfo />
-        <form onSubmit={submitHandler}>
-          <Input />
-        </form>
         <nav onClick={toggleNav}>
           <NavList />
         </nav>
-        <nav>
-          <NavItem icon={<AiOutlineMenu size={20} className='text-blue-400' />} title='Custom List' amount={2} />
+        <nav onClick={toggleNav}>
+          <NavCustomLists />
         </nav>
-        <div className='mt-auto'>
-          <div className='border-t border-zinc-600 pb-2' />
-          <div className='flex items-center gap-4 w-full p-2 rounded-md cursor-pointer hover:bg-zinc-700/50 transition'>
-            <AiOutlinePlus size={20} />
-            <span>New List</span>
-          </div>
-        </div>
+        <AddListForm />
       </motion.div>
     </motion.div>
   );
