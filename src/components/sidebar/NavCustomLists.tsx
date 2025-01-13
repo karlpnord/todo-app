@@ -8,7 +8,7 @@ const NavCustomLists = () => {
   const { customLists } = useTaskStore();
 
   return (
-    <ul className='overflow-y-auto'>
+    <ul>
       {customLists.length === 0 ? (
         <p className='pl-2'>No lists added</p>
       ): (

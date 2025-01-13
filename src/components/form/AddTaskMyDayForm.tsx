@@ -19,11 +19,6 @@ const AddTaskMyDayForm = ({ isImportant = false }: Props) => {
     if (taskTitle.trim().length === 0) {
       return;
     }
-      
-    const activeElement = document.activeElement as HTMLElement | null;
-    if (activeElement && typeof activeElement.blur === 'function') {
-      activeElement.blur();
-    }
   
     const newTask: TaskType = {
       id: crypto.randomUUID(),
