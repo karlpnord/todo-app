@@ -38,6 +38,8 @@ const Task = ({ task, toggleSettings }: Props) => {
         duration: 0.3,
         ease: 'easeInOut',
       }}
+      aria-label={`Open settings for task "${task.title}"`}
+      tabIndex={0}
     >
       <div onClick={toggleComplete}>
         <motion.div
@@ -47,6 +49,7 @@ const Task = ({ task, toggleSettings }: Props) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
           className='cursor-pointer'
+          aria-label={task.isCompleted ? 'Mark task as incomplete' : 'Mark task as complete'}
         >
           {task.isCompleted ? (
             <FaRegCircleCheck size={18} className='text-green-400' />
@@ -66,6 +69,7 @@ const Task = ({ task, toggleSettings }: Props) => {
       <div
         onClick={toggleImportant}
         className='ml-auto text-gray-300 hover:text-blue-400 transition'
+        aria-label={task.isImportant ? 'Remove from important tasks' : 'Mark as important'}
       >
         <motion.div
           key={task.isImportant ? 'important' : 'notImportant'}
