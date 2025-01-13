@@ -35,11 +35,11 @@ const AddTaskForm = ({ isImportant = false, listId = null }: Props) => {
   return (
     <form onSubmit={handleAddTask} className='flex relative items-center group'>
       <button
-        className='absolute left-3 text-gray-100 cursor-pointer bg-zinc-800'
+        className='absolute left-2 text-gray-300 cursor-pointer bg-zinc-800'
         type='submit'
         aria-label='Add task'
       >
-        <AiOutlinePlus size={24} />
+        <AiOutlinePlus size={28} />
       </button>
       <input
         onChange={(e) => setTaskTitle(e.target.value)}

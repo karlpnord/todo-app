@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import useTaskStore from '../store/taskStore';
 import { useState, useEffect } from 'react';
@@ -14,6 +14,7 @@ const CustomPage = () => {
   const { id } = useParams<{ id: string }>();
   const { customLists } = useTaskStore();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [openSettings, setOpenSettings] = useState<boolean>(false);
   const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
@@ -40,6 +41,7 @@ const CustomPage = () => {
   
   return (
     <motion.div
+      key={`${location.pathname}-${id}`}
       className='flex flex-col gap-12 h-full max-h-[calc(100vh-3rem)]'
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
