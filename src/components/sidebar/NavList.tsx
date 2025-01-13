@@ -8,7 +8,7 @@ import NavItem from './NavItem';
 const NavList = () => {
   const { allTasks, importantTasks, myDayTasks } = useTaskStore();
   return (
-    <ul className='flex flex-col gap-2 pb-2 border-b border-zinc-600'>
+    <ul className='flex flex-col gap-2 py-2 border-t border-b border-zinc-600'>
       <NavLink
         to='/'
         className={({ isActive }) => 

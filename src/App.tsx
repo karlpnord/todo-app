@@ -10,6 +10,8 @@ import AllTasks from './pages/AllTasks';
 import Important from './pages/Important';
 import MyDay from './pages/MyDay';
 import Dashboard from './pages/Dashboard';
+import CustomPage from './pages/CustomPage';
+import NotFound from './pages/NotFound';
 
 const App = () => {
   const { width } = useDeviceSize();
@@ -41,6 +43,8 @@ const App = () => {
             <Route path='/myday' element={<MyDay />} />
             <Route path='/important' element={<Important />} />
             <Route path='/all-tasks' element={<AllTasks />} />
+            <Route path='/custom/:id' element={<CustomPage />} key={location.pathname} />
+            <Route path='*' element={<NotFound />} />
           </Routes>
         </div>
       </div>

@@ -5,3 +5,9 @@ export interface Task {
   isImportant: boolean;
   createdAt: Date;
 }
+
+export interface List {
+  id: string;
+  tasks: Task[];
+  listName: string;
+}

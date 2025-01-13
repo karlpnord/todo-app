@@ -6,9 +6,10 @@ import useTaskStore from '../../store/taskStore';
 
 interface Props {
   isImportant?: boolean;
+  listId?: string | null;
 }
 
-const AddTaskForm = ({ isImportant = false }: Props) => {
+const AddTaskForm = ({ isImportant = false, listId = null }: Props) => {
   const { addTask } = useTaskStore();
 
   const [taskTitle, setTaskTitle] = useState<string>('');
@@ -19,11 +20,6 @@ const AddTaskForm = ({ isImportant = false }: Props) => {
     if (taskTitle.trim().length === 0) {
       return;
     }
-      
-    const activeElement = document.activeElement as HTMLElement | null;
-    if (activeElement && typeof activeElement.blur === 'function') {
-      activeElement.blur();
-    }
   
     const newTask: TaskType = {
       id: crypto.randomUUID(),
@@ -32,20 +28,20 @@ const AddTaskForm = ({ isImportant = false }: Props) => {
       isImportant: isImportant,
       createdAt: new Date()
     };
-    addTask(newTask);
+    addTask(newTask, listId);
     setTaskTitle('');
   };
   
   return (
     <form onSubmit={handleAddTask} className='flex relative items-center group'>
-      <button className='absolute left-3 text-gray-100 cursor-pointer bg-zinc-700'>
+      <button className='absolute left-3 text-gray-100 cursor-pointer bg-zinc-800'>
         <AiOutlinePlus size={20} />
       </button>
       <input
         onChange={(e) => setTaskTitle(e.target.value)}
         value={taskTitle}
         placeholder='Add Task'
-        className='bg-zinc-700 w-full rounded-md p-4 pl-10 text-gray-100 focus:outline-none focus:ring-0'
+        className='bg-zinc-800 w-full rounded-md p-4 pl-10 text-gray-100 focus:outline-none focus:ring-0'
       />
     </form>
   );

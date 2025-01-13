@@ -1,16 +1,18 @@
-import { AiOutlineEllipsis } from 'react-icons/ai';
+import { AiFillDelete } from 'react-icons/ai';
 
 interface Props {
   icon: JSX.Element;
   title: string;
+  deleteIcon?: boolean;
+  deleteHandler?: () => void;
 }
 
-const PageHeading = ({ icon, title }: Props) => {
+const PageHeading = ({ icon, title, deleteIcon, deleteHandler }: Props) => {
   return (
     <div className='flex items-center w-full gap-2'>
       {icon}
       <h1 className='text-2xl font-bold'>{title}</h1>
-      <AiOutlineEllipsis size={28} className='w-fit ml-auto text-gray-100 p-[6px] rounded-md border border-zinc-700 hover:bg-zinc-700 transition active:scale-90' />
+      {deleteIcon && <AiFillDelete onClick={deleteHandler} size={32} className='w-fit ml-auto text-red-400 p-[6px] rounded-md border border-zinc-700 hover:bg-zinc-700 transition active:scale-90' />}
     </div>
   );
 };
