@@ -26,7 +26,7 @@ const App = () => {
   }
 
   return (
-    <div className='flex flex-col bg-[#1e1e1e] min-h-screen'>
+    <div className='flex flex-col bg-[#1e1e1e] min-h-screen bottom-safe-bottom'>
       {width < 768 && (
         <div className='p-4'>
           <MenuButton toggleNav={toggleNav} />

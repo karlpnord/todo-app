@@ -16,6 +16,9 @@ export default {
         90: '90',
         100: '100',
       },
+      spacing: {
+        'safe-bottom': 'env(safe-area-inset-bottom)',
+      },
     },
   },
   plugins: [
