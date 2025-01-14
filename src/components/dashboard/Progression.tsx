@@ -4,13 +4,16 @@ import useTaskStore from '../../store/taskStore';
 const Progression = () => {
   const { myDayTasks } = useTaskStore();
 
+  // Calculate how many tasks have been completed
   const tasksCompleted: number = myDayTasks.reduce((count, task) => {
     return task.isCompleted ? count + 1 : count;
   }, 0);
 
+  // Calculate percentage of all tasks completed
   const totalTasks = myDayTasks.length;
   const completionPercentage = totalTasks > 0 ? (tasksCompleted / totalTasks) * 100 : 0;
 
+  // Calculate how much of circular progression bar to be filled
   const totalCircumference = 2 * Math.PI * 16;
   const strokeDashoffset = totalCircumference - (completionPercentage / 100) * totalCircumference;
 

@@ -54,7 +54,7 @@ const TaskSettingsSidebar = ({ toggleSettings }: Props) => {
           <TaskSettingsImportant />
           <TaskSettingsDelete toggleDeleteModal={toggleDeleteModal} />
         </ul>
-        <div className='px-2 pb-2 py-4 mt-auto flex items-center gap-1 border-t border-zinc-600'>
+        <div className='px-2 py-4 mt-auto flex items-center gap-1 border-t border-zinc-600'>
           <AiOutlineCalendar size={18} className='text-blue-400' />
           <h3>Created: {date}</h3>
         </div>

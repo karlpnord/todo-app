@@ -3,10 +3,11 @@ import { AiOutlineMessage, AiOutlineBulb } from 'react-icons/ai';
 
 
 const DailyQuote = () => {
+  // Generate random number to retrieve random fun fact/quote from dataList
   const randomIndex = Math.floor(Math.random() * dataList.length);
-
   const randomItem: DataItem = dataList[randomIndex];
 
+  // Fallback if dataList doesnt exist or is empty
   if (!dataList || dataList.length === 0) {
     return (
       <div className='flex flex-col justify-center gap-2 bg-zinc-900 rounded-md h-40 p-4'>

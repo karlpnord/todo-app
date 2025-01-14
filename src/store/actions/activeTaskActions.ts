@@ -8,6 +8,9 @@ export const createActiveTaskActions: StateCreator<
   [],
   ActiveTaskActions
 > = (set) => ({
+  // Set task as active
   setActiveTask: (task: Task) => set({ activeTask: task }),
+
+  // Empty the active task
   clearActiveTask: () => set({ activeTask: null }),
 });

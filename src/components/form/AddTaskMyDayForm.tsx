@@ -16,7 +16,9 @@ const AddTaskMyDayForm = ({ isImportant = false }: Props) => {
   const handleAddTask = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   
+    // Check for valid input
     if (taskTitle.trim().length === 0) {
+      setTaskTitle('');
       return;
     }
   

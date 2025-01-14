@@ -1,11 +1,11 @@
 import { motion } from 'motion/react';
 import { AiOutlineEllipsis } from 'react-icons/ai';
 
-import MenuButton from '../../util/MenuButton';
 import SidebarUserInfo from './SidebarUserInfo';
 import NavList from './NavList';
 import NavCustomLists from './NavCustomLists';
 import AddListForm from '../form/AddListForm';
+import CloseButton from '../../util/CloseButton';
 
 interface Props {
   toggleNav: () => void;
@@ -27,10 +27,10 @@ const MobileSidebar = ({ toggleNav }: Props) => {
         exit={{ x: '-100%' }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         onClick={(e) => e.stopPropagation()}
-        className='flex flex-col gap-4 w-fit max-w-[340px] h-screen p-4 bg-zinc-800 text-gray-100 relative z-50'
+        className='flex flex-col gap-4 w-fit max-w-[340px] h-screen p-4 pb-12 bg-zinc-800 text-gray-100 relative z-50s'
       >
         <div className='flex justify-between items-center'>
-          <MenuButton toggleNav={toggleNav} />
+          <CloseButton toggleNav={toggleNav} />
           <AiOutlineEllipsis size={20} />
         </div>
         <SidebarUserInfo />
