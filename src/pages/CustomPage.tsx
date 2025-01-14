@@ -4,7 +4,7 @@ import useTaskStore from '../store/taskStore';
 import { useState, useEffect } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 
-import PageHeading from '../util/PageHeading';
+import CustomPageHeading from '../util/CustomPageHeading';
 import TaskList from '../components/ui/TaskList';
 import TaskSettingsSidebar from '../components/sidebar/TaskSettingsSidebar';
 import AddTaskForm from '../components/form/AddTaskForm';
@@ -37,7 +37,6 @@ const CustomPage = () => {
     return <div>Temporary Fallback</div>;
   }
 
-
   const deleteModalToggle = () => {
     setOpenDeleteModal((prev) => !prev);
   };
@@ -50,7 +49,7 @@ const CustomPage = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <PageHeading icon={<AiOutlineMenu size={28} className='text-blue-400' />} title={filteredList.listName} deleteIcon={true} deleteHandler={deleteModalToggle} />
+      <CustomPageHeading icon={<AiOutlineMenu size={28} className='text-blue-400' />} id={filteredList.id} title={filteredList.listName} deleteIcon={true} deleteHandler={deleteModalToggle} />
       <TaskList taskList={filteredList.tasks} toggleSettings={toggleSettings} emptyText='No tasks added yet' />
       <AddTaskForm listId={filteredList.id} />
       <AnimatePresence>

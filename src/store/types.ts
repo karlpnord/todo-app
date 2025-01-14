@@ -11,6 +11,7 @@ export interface TaskState {
 export interface ListActions {
   addList: (listName: string) => void;
   deleteList: (listId: string) => void;
+  updateListName: (listId: string, listQuery: string) => void;
 }
 
 export interface TaskActions {
