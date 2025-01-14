@@ -13,7 +13,7 @@ interface Props {
   deleteHandler?: () => void;
 }
 
-const PageHeading = ({ icon, id, title, deleteIcon, deleteHandler }: Props) => {
+const CustomPageHeading = ({ icon, id, title, deleteIcon, deleteHandler }: Props) => {
   const { updateListName } = useTaskStore();
   const [listQuery, setListQuery] = useState<string>(title);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -66,4 +66,4 @@ const PageHeading = ({ icon, id, title, deleteIcon, deleteHandler }: Props) => {
   );
 };
 
-export default PageHeading;
+export default CustomPageHeading;
