@@ -8,10 +8,12 @@ const Stats = () => {
   const { myDayTasks, allTasks } = useTaskStore();
   const [activeStatCard, setActiveStatCard] = useState<string>('total');
 
+  // Calculate how many daily tasks remain to be completed
   const dailyTasksToComplete: number = myDayTasks.reduce((count, task) => {
     return task.isCompleted ? count : count + 1;
   }, 0);
 
+  // Calculate how many tasks have been completed
   const tasksCompleted: number = allTasks.reduce((count, task) => {
     return task.isCompleted ? count + 1 : count;
   }, 0);

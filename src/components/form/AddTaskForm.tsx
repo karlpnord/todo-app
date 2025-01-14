@@ -17,7 +17,9 @@ const AddTaskForm = ({ isImportant = false, listId = null }: Props) => {
   const handleAddTask = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   
+    // Check for valid input
     if (taskTitle.trim().length === 0) {
+      setTaskTitle('');
       return;
     }
   
@@ -33,7 +35,7 @@ const AddTaskForm = ({ isImportant = false, listId = null }: Props) => {
   };
   
   return (
-    <form onSubmit={handleAddTask} className='flex relative items-center group safe-bottom'>
+    <form onSubmit={handleAddTask} className='flex relative items-center group'>
       <button
         className='absolute left-2 text-gray-300 cursor-pointer bg-zinc-800'
         type='submit'

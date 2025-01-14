@@ -26,14 +26,17 @@ const CustomPage = () => {
   const filteredList = customLists.find((list) => list.id === id);
 
   useEffect(() => {
+  // If `filteredList` is not found or `customLists` is empty, navigate to the homepage
     if (!filteredList || customLists.length === 0) {
       navigate('/');
     }
   }, [filteredList, customLists, navigate]);
 
+  // If `customLists` is empty or `filteredList` is not found, show a temporary fallback UI
   if (customLists.length === 0 || !filteredList) {
     return <div>Temporary Fallback</div>;
   }
+
 
   const deleteModalToggle = () => {
     setOpenDeleteModal((prev) => !prev);

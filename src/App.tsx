@@ -37,7 +37,7 @@ const App = () => {
       </AnimatePresence>
       <div className='flex flex-1 md:grid md:grid-cols-[auto,1fr] text-gray-100'>
         {width >= 768 && <DesktopSidebar /> }
-        <div className='p-4 w-full lg:p-8'>
+        <div className='p-4 w-full py-8 lg:p-8 lg:pb-8'>
           <Routes>
             <Route index element={<Dashboard />} />
             <Route path='/myday' element={<MyDay />} />

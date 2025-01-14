@@ -16,7 +16,9 @@ const AddTaskMyDayForm = ({ isImportant = false }: Props) => {
   const handleAddTask = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   
+    // Check for valid input
     if (taskTitle.trim().length === 0) {
+      setTaskTitle('');
       return;
     }
   
@@ -32,7 +34,7 @@ const AddTaskMyDayForm = ({ isImportant = false }: Props) => {
   };
   
   return (
-    <form onSubmit={handleAddTask} className='flex relative items-center group safe-bottom'>
+    <form onSubmit={handleAddTask} className='flex relative items-center group'>
       <button
         className='absolute left-2 text-gray-300 cursor-pointer bg-zinc-800'
         type='submit'

@@ -21,6 +21,11 @@ const TaskSettingsUpdate = () => {
   const handleUpdateTask = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (value.trim().length === 0) {
+      setValue('');
+      return;
+    }
+
     if (activeTask) {
       updateTaskTitle(activeTask?.id, value);
       setNotifSuccess(true);

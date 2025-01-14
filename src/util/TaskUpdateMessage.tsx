@@ -9,6 +9,7 @@ interface Props {
 }
 
 const TaskUpdateMessage = ({ removeNotif }: Props) => {
+  // Removes task updated message after 1 second
   useEffect(() => {
     const timeoutRef = setTimeout(() => {
       removeNotif();

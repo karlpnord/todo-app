@@ -11,6 +11,7 @@ export const useDeviceSize = (): DeviceSize => {
     height: window.innerHeight,
   });
 
+  // Function to update the size when the window is resized
   useEffect(() => {
     const handleResize = () => {
       setSize({
@@ -19,8 +20,10 @@ export const useDeviceSize = (): DeviceSize => {
       });
     };
 
+    // Add the resize event listener to the window
     window.addEventListener('resize', handleResize);
 
+    // Cleanup: remove the event listener when the component unmounts
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 

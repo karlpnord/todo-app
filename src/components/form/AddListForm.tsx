@@ -9,6 +9,13 @@ const AddListForm = () => {
 
   const handleAddList = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Check for valid input
+    if (listQuery.trim().length === 0) {
+      setListQuery('');
+      return;
+    }
+
     addList(listQuery);
     setListQuery('');
   };
