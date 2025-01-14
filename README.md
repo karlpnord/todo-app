@@ -1,50 +1,61 @@
-# React + TypeScript + Vite
+###### Todo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Introduction
+Welcome to the TODO App, a personal project designed to enhance productivity and task organization while honing my skills in TypeScript and Zustand. This application provides a clean and intuitive interface for managing tasks and custom lists, combining modern design with robust functionality.
 
-Currently, two official plugins are available:
+## Screenshot
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Screenshot of the application](./src/assets/Screenshot.jpg)
 
-## Expanding the ESLint configuration
+### Features
+- Add tasks with detailed descriptions to effectively capture actionable items.
+- Mark tasks as important to prioritize essential activities.
+- Toggle task completion status to visually track progress.
+- Edit task names to accommodate evolving requirements or updates.
+- Delete tasks to maintain a clutter-free and relevant task list.
+- Monitor overall progress and productivity metrics via an interactive dashboard.
+- Create and customize task lists for specific projects or categories.
+- Rename lists to reflect changes in scope or focus.
+- Perform comprehensive CRUD operations on tasks within custom lists to ensure complete control over task management.
+- Experience a user-friendly interface designed for efficient navigation and task handling.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Technologies Used
+- **React**: Core framework for building the user interface.
+- **React-Router-dom**: For routing between different pages of the app.
+- **React-icons**: Icon library used for adding scalable vector icons.
+- **Tailwind CSS**: Utility-first CSS framework for styling
+- **Vite**: Development server and build tool for fast project setup.
+- **TypeScript**: Adds static typing to JavaScript, enhancing code quality and maintainability.
+- **Motion**: Animation library for creating smooth, interactive animations.
+- **Zustand**: State Management for handling app-wide state.
 
-- Configure the top-level `parserOptions` property like this:
+[![My Skills](https://skillicons.dev/icons?i=react,typescript,tailwindcss,vite)](https://skillicons.dev)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Installation
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/your-repo-name.git
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. Navigate to the project directory:
+   ```bash
+   cd your-repo-name
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+3. Install Dependencies:
+   ```bash
+   npm install
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+4. Run the Development Server:
+   ```bash
+   npm run dev
+
+## Usage
+- After starting the development server, navigate to `http://localhost:3000` to see the Todo application.
+- Add tasks, toggle their importance or completion status, and organize them into custom lists.
+- Monitor your progress with the dashboard and enjoy a streamlined task management experience.
+
+### Contributing
+Contributions are welcome! Please feel free to submit a Pull Request or open an issue if you find any bugs or improvements.
+
+## Contact
+Created by [Karl Petter Nordgaard](https://github.com/karlpnord) - feel free to reach out!
