@@ -33,7 +33,7 @@ const AddTaskForm = ({ isImportant = false, listId = null }: Props) => {
   };
   
   return (
-    <form onSubmit={handleAddTask} className='flex relative items-center group'>
+    <form onSubmit={handleAddTask} className='flex relative items-center group pb-8 lg:pb-0'>
       <button
         className='absolute left-2 text-gray-300 cursor-pointer bg-zinc-800'
         type='submit'

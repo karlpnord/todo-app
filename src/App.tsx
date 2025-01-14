@@ -26,9 +26,9 @@ const App = () => {
   }
 
   return (
-    <div className='flex flex-col bg-[#1e1e1e] min-h-screen bottom-safe-bottom'>
+    <div className='flex flex-col bg-[#1e1e1e] min-h-screen'>
       {width < 768 && (
-        <div className='p-4'>
+        <div className='p-4 pt-8'>
           <MenuButton toggleNav={toggleNav} />
         </div>
       )}
@@ -37,7 +37,7 @@ const App = () => {
       </AnimatePresence>
       <div className='flex flex-1 md:grid md:grid-cols-[auto,1fr] text-gray-100'>
         {width >= 768 && <DesktopSidebar /> }
-        <div className='p-4 w-full lg:p-6'>
+        <div className='p-4 w-full lg:p-8'>
           <Routes>
             <Route index element={<Dashboard />} />
             <Route path='/myday' element={<MyDay />} />
