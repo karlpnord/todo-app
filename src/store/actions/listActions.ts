@@ -50,4 +50,25 @@ export const createListActions: StateCreator<
         importantTasks: state.importantTasks.filter((task) => !tasksToDelete.includes(task.id)),
       };
     }),
+
+  updateListName: (listId, listQuery) =>
+    set((state) => {
+      // Find the list that matches the listId
+      const listToUpdate = state.customLists.find((list) => list.id === listId);
+    
+      // Early return if no list to update is found
+      if (!listToUpdate) return state;
+    
+      // Update the list name with the new value (listQuery)
+      const updatedLists = state.customLists.map((list) => {
+        if (list.id === listId) {
+          return { ...list, listName: listQuery };
+        }
+        return list;
+      });
+    
+      return {
+        customLists: updatedLists,
+      };
+    }),
 });

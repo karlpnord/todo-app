@@ -17,7 +17,7 @@ const NavCustomLists = () => {
             <NavLink
               to={`/custom/${list.id}`}
               className={({ isActive }) => 
-                `${isActive ? 'bg-zinc-700' : ''} rounded-md`
+                `block hover:bg-zinc-700 transition ${isActive ? 'bg-zinc-700' : ''} rounded-md`
               }
             >
               <NavItem icon={<AiOutlineMenu size={20} className='text-blue-400' />} title={list.listName} amount={list.tasks.length} />

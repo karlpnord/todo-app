@@ -27,7 +27,7 @@ const MobileSidebar = ({ toggleNav }: Props) => {
         exit={{ x: '-100%' }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         onClick={(e) => e.stopPropagation()}
-        className='flex flex-col gap-4 w-fit max-w-[340px] h-screen p-4 pb-12 bg-zinc-800 text-gray-100 relative z-50s'
+        className='flex flex-col gap-4 w-fit max-w-[320px] h-screen p-4 pb-12 bg-zinc-800 text-gray-100 relative z-50s'
       >
         <div className='flex justify-between items-center'>
           <CloseButton toggleNav={toggleNav} />
