@@ -7,26 +7,23 @@ interface CurrentDate {
 }
 
 export const useCurrentDate = (): CurrentDate => {
-  const [currentTime, setCurrentTime] = useState<Date>(new Date());
+  const [time, setTime] = useState<string>(new Date().toLocaleTimeString());
+  const [dateInfo] = useState<{ date: string; weekday: string }>(() => {
+    const now = new Date();
+    return {
+      date: `${now.getDate()} ${now.toLocaleString('default', { month: 'short' })}`,
+      weekday: now.toLocaleString('default', { weekday: 'long' })
+    };
+  });
 
-  // Set up an interval that updates the time every second (1000 milliseconds)
+  // Only update the time every second
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCurrentTime(new Date());
+      setTime(new Date().toLocaleTimeString());
     }, 1000);
 
-    // Cleanup the interval when the component is unmounted or the effect is re-run
     return () => clearInterval(intervalId);
   }, []);
 
-  // Extract the day, month, time, and weekday from the currentTime object
-  const day = currentTime.getDate();
-  const month = currentTime.toLocaleString('default', { month: 'short' });
-  const time = currentTime.toLocaleTimeString();
-  const weekday = currentTime.toLocaleString('default', { weekday: 'long' });
-
-  // Format the date as f.ex. 14 Jan
-  const date = `${day} ${month}`;
-
-  return { date, time, weekday };
+  return { ...dateInfo, time };
 };

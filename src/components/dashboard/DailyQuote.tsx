@@ -1,11 +1,14 @@
 import { dataList, DataItem } from '../../data/dataList';
 import { AiOutlineMessage, AiOutlineBulb } from 'react-icons/ai';
-
+import { useMemo } from 'react';
 
 const DailyQuote = () => {
   // Generate random number to retrieve random fun fact/quote from dataList
-  const randomIndex = Math.floor(Math.random() * dataList.length);
-  const randomItem: DataItem = dataList[randomIndex];
+  // Memoize the random item so it only changes when dependencies change (empty array = only on mount)
+  const randomItem: DataItem = useMemo(() => {
+    const randomIndex = Math.floor(Math.random() * dataList.length);
+    return dataList[randomIndex];
+  }, []);
 
   // Fallback if dataList doesnt exist or is empty
   if (!dataList || dataList.length === 0) {
@@ -24,7 +27,7 @@ const DailyQuote = () => {
     <div>
       <h2 className='text-2xl font-bold mb-2'>Daily Quote / Fun Fact</h2>
       <div className='flex flex-col justify-center gap-2 bg-zinc-900 rounded-md h-40 p-4'>
-        {dataList[randomIndex].type === 'quote' ? (
+        {randomItem.type === 'quote' ? (
           <AiOutlineMessage size={28} className='text-blue-400' />
         ) : (
           <AiOutlineBulb size={28} className='text-yellow-400' />
