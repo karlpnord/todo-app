@@ -33,7 +33,6 @@ export const createListActions: StateCreator<
       // Find correct list to delete in the customLists
       const listToDelete = state.customLists.find((list) => list.id === listId);
       
-      // Early return if no list to delete is found
       if (!listToDelete) return state;
   
       // Extract the id's of all tasks in the list that will be deleted
@@ -56,7 +55,6 @@ export const createListActions: StateCreator<
       // Find the list that matches the listId
       const listToUpdate = state.customLists.find((list) => list.id === listId);
     
-      // Early return if no list to update is found
       if (!listToUpdate) return state;
     
       // Update the list name with the new value (listQuery)

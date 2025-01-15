@@ -12,7 +12,7 @@ export const useFormatDate = (date?: string | Date): string => {
 
     // Format the valid date using Intl.DateTimeFormat to display it in a custom format
     return new Intl.DateTimeFormat('en-GB', { 
-      weekday: 'long',
+      weekday: 'short',
       day: 'numeric',
       month: 'short'
     }).format(validDate);

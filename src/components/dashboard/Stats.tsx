@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
 import StatItem from './StatItem';
 import SectionHeading from '../../util/SectionHeading';
@@ -8,15 +8,19 @@ const Stats = () => {
   const { myDayTasks, allTasks } = useTaskStore();
   const [activeStatCard, setActiveStatCard] = useState<string>('total');
 
-  // Calculate how many daily tasks remain to be completed
-  const dailyTasksToComplete: number = myDayTasks.reduce((count, task) => {
-    return task.isCompleted ? count : count + 1;
-  }, 0);
+  const calculations = useMemo(() => {
+    // Calculate how many daily tasks remain to be completed
+    const dailyTasksToComplete: number = myDayTasks.reduce((count, task) => {
+      return task.isCompleted ? count : count + 1;
+    }, 0);
 
-  // Calculate how many tasks have been completed
-  const tasksCompleted: number = allTasks.reduce((count, task) => {
-    return task.isCompleted ? count + 1 : count;
-  }, 0);
+    // Calculate how many tasks have been completed
+    const tasksCompleted: number = allTasks.reduce((count, task) => {
+      return task.isCompleted ? count + 1 : count;
+    }, 0);
+
+    return { dailyTasksToComplete, tasksCompleted };
+  }, [myDayTasks, allTasks]);
 
   const clickHandler = (card: string) => {
     setActiveStatCard(card);
@@ -36,14 +40,14 @@ const Stats = () => {
         <StatItem
           cardName='due'
           cardTitle='Due Today'
-          statNumber={dailyTasksToComplete}
+          statNumber={calculations.dailyTasksToComplete}
           activeCard={activeStatCard}
           clickHandler={() => clickHandler('due')}
         />
         <StatItem
           cardName='completed'
           cardTitle='Completed Tasks'
-          statNumber={tasksCompleted}
+          statNumber={calculations.tasksCompleted}
           activeCard={activeStatCard}
           clickHandler={() => clickHandler('completed')}
         />
